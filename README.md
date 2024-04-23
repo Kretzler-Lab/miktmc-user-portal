@@ -1,5 +1,5 @@
-# kpmp-user-portal
-Centralized User Portal API for the KPMP app suite
+# miktmc_user_portal
+Centralized User Portal API for MiKTMC Applications
 
 
 ## Development Environment
@@ -17,9 +17,6 @@ config.json
     "MONGO_URI": "mongodb://root:{MONGO_ROOT_PASSWORD}@localhost:27017/kpmp?authSource=admin",
     "SECRET_KEY": "create_entropy_to_use_here",
     "ENV": "development",
-    "UWGS_KEY": "~/path/to/your.key",
-    "UWGS_CERT": "~/path/to/your.cert",
-    "UWGS_URL": "groups_version_api_url"
 }
 ```
 
