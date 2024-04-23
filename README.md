@@ -5,8 +5,8 @@ Centralized User Portal API for MiKTMC Applications
 ## Development Environment
 #### Config
 ```sh
-git clone https://github.com/uwrit/kpmp_user_portal.git
-cd kpmp_user_portal
+git clone https://github.com/Kretzler-Lab/miktmc-user-portal/
+cd miktmc-user-portal
 touch config.json
 touch .docker.env
 ```
