@@ -32,7 +32,7 @@ services:
     networks:
       dataLake:
         aliases:
-          - app
+          - user-portal
 
 volumes:
   kpmp-mongo-data:
