@@ -12,4 +12,4 @@ COPY . /app
 
 EXPOSE 5001
 ENTRYPOINT [ "python" ]
-CMD [ "index.py" ]
+CMD [ "run.py" ]

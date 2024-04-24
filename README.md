@@ -14,7 +14,7 @@ touch .docker.env
 config.json
 ```json
 {
-    "MONGO_URI": "mongodb://root:{MONGO_ROOT_PASSWORD}@localhost:27017/kpmp?authSource=admin",
+    "MONGO_URI": "mongodb://mongodb:27017/user-portal?authSource=admin",
     "SECRET_KEY": "create_entropy_to_use_here",
     "ENV": "development",
 }

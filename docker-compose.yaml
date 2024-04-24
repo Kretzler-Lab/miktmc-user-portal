@@ -1,41 +1,42 @@
 version: "3.7"
 services:
-  mongodb:
-    build:
-      context: ./docker/mongodb
-    env_file: ./.docker.env
-    container_name: "kpmp-user-mongo"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
-    volumes:
-      - "kpmp-mongo-data:/data/db"
-    ports:
-        - 27017:27017
-    networks:
-      local:
-        aliases:
-          - mongodb
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
 
-  # app:
-  #   build:
-  #     context: ./
-  #     dockerfile: ./Dockerfile
-  #   env_file: ./.docker.env
-  #   environment:
-  #      - FLASK_RUNNING_IN_DOCKER=true
-  #   container_name: "kpmp-user-app"
-  #   ports:
-  #     - 5001:5001
-  #   networks:
-  #     local:
-  #       aliases:
-  #         - app
+  #mongodb:
+  #  build:
+  #    context: ./docker/mongodb
+  #  env_file: ./.docker.env
+  #  container_name: "kpmp-user-mongo"
+  #  environment:
+  #    - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+  #    - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+  #  volumes:
+  #    - "kpmp-mongo-data:/data/db"
+  #  ports:
+  #      - 27017:27017
+  #  networks:
+  #    dataLake:
+  #      aliases:
+  #        - portal-mongodb
+  #  command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    env_file: ./.docker.env
+    environment:
+      - FLASK_RUNNING_IN_DOCKER=true
+    container_name: "kpmp-user-app"
+    ports:
+      - 5001:5001
+    networks:
+      dataLake:
+        aliases:
+          - user-portal
 
 volumes:
   kpmp-mongo-data:
 
 networks: 
-  local:
-    driver: bridge
+  dataLake:
+    external: true
