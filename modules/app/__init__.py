@@ -5,7 +5,6 @@ from bson.objectid import ObjectId
 from flask_pymongo import PyMongo
 import datetime
 from os import path
-import uwgs
 
 
 class JSONEncoder(json.JSONEncoder):
