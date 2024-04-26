@@ -1,23 +1,23 @@
 version: "3.7"
 services:
 
-  #mongodb:
-  #  build:
-  #    context: ./docker/mongodb
-  #  env_file: ./.docker.env
-  #  container_name: "kpmp-user-mongo"
-  #  environment:
-  #    - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
-  #    - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
-  #  volumes:
-  #    - "kpmp-mongo-data:/data/db"
-  #  ports:
-  #      - 27017:27017
-  #  networks:
-  #    dataLake:
-  #      aliases:
-  #        - portal-mongodb
-  #  command: mongod --smallfiles --logpath=/dev/null # --quiet
+  mongodb:
+    build:
+      context: ./docker/mongodb
+    env_file: ./.docker.env
+    container_name: "kpmp-user-mongo"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    volumes:
+      - "kpmp-mongo-data:/data/db"
+    ports:
+        - 27018:27017
+    networks:
+      dataLake:
+        aliases:
+          - portal-mongodb
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
 
   app:
     build:
