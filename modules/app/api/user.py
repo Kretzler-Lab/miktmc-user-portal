@@ -47,8 +47,6 @@ def _get_user(id):
         {'shib_id': re.compile('^{}$'.format(id), re.IGNORECASE)}, {'last_changed_by': 0, 'last_changed_on': 0})
     if not user:
         return jsonify(), 404
-    gms = _get_groups(user)
-    user.update({'groups': gms})
     return jsonify(user), 200
 
 

@@ -57,6 +57,7 @@ class UserView(ModelView):
     column_labels = dict(org_name='Organization')
 
     # column_extra_row_actions = []
+    groups = _get_groups()
 
     form = UserForm
 
@@ -68,7 +69,6 @@ class UserView(ModelView):
             ls = super().get_list(page, sort_column, sort_desc, search, filters, execute=execute, page_size=page_size)
             users: Iterable[Dict] = ls[1]
 
-            groups = _get_groups()
             orgs_dict = {x[0]: x[1] for x in _get_org_refs()}
 
             for user in users:
