@@ -57,7 +57,7 @@ class UserView(ModelView):
     column_labels = dict(org_name='Organization')
 
     # column_extra_row_actions = []
-
+    groups = _get_groups()
     form = UserForm
 
     # Enables csv export of users
