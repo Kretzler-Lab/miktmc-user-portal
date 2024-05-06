@@ -19,7 +19,7 @@ services:
           - portal-mongodb
     command: mongod --logpath=/dev/null # --quiet
 
-  app:
+  portal-app:
     build:
       context: ./
       dockerfile: ./Dockerfile

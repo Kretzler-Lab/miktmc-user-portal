@@ -58,7 +58,6 @@ class UserView(ModelView):
 
     # column_extra_row_actions = []
     groups = _get_groups()
-
     form = UserForm
 
     # Enables csv export of users
