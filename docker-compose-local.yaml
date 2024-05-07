@@ -1,7 +1,7 @@
 version: "3.7"
 services:
 
-  mongodb:
+  portal-mongodb:
     build:
       context: ./docker/mongodb
     env_file: ./.docker.env

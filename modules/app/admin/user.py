@@ -56,8 +56,6 @@ class UserView(ModelView):
     column_searchable_list = ('last_name', 'first_name', 'email', 'shib_id')
     column_labels = dict(org_name='Organization')
 
-    # column_extra_row_actions = []
-    groups = _get_groups()
     form = UserForm
 
     # Enables csv export of users
@@ -112,6 +110,7 @@ class UserView(ModelView):
     def create_form(self, obj=None):
         form = super().create_form(obj)
         form.organization_id.choices = _get_org_refs()
+        form.groups.choices = _get_groups()
         return form
 
     def edit_form(self, obj: dict = None):
@@ -120,6 +119,7 @@ class UserView(ModelView):
 
         form = super().edit_form(obj)
         form.organization_id.choices = _get_org_refs()
+        form.groups.choices = _get_groups()
 
         if obj.get('phone_numbers') and len(obj.get('phone_numbers')) >= form.phone_numbers.min_entries:
             form.phone_numbers.append_entry()
