@@ -3,7 +3,7 @@ Centralized User Portal API for MiKTMC Applications
 
 ## Running
 
-config.json
+edit config.json
 ```json
 {
     "MONGO_URI": "mongodb://portal-mongodb:27018/user-portal?authSource=admin",
