@@ -2,13 +2,8 @@ version: "3.7"
 services:
 
   portal-mongodb:
-    build:
-      context: ./docker/mongodb
-    env_file: ./.docker.env
-    container_name: "kpmp-user-mongo"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+    image: mongo:latest 
+    container_name: portal-mongodb
     volumes:
       - "kpmp-mongo-data:/data/db"
     ports:
@@ -20,13 +15,10 @@ services:
     command: mongod --logpath=/dev/null # --quiet
 
   portal-app:
-    build:
-      context: ./
-      dockerfile: ./Dockerfile
-    env_file: ./.docker.env
+    image: ${ENV_PORTAL_APP_CONTAINER} 
     environment:
       - FLASK_RUNNING_IN_DOCKER=true
-    container_name: "kpmp-user-app"
+    container_name: portal-app
     ports:
       - 5001:5001
     networks:
