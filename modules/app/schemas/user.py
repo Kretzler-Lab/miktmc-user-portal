@@ -34,6 +34,10 @@ _user_schema = {
         "organization_id": {
             "type": "string"
         },
+        "groups": {
+            "type": "array",
+            "items": {"type": "string"}
+        },
         "last_changed_by": {
             "type": "string"
         },

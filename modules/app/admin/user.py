@@ -1,23 +1,29 @@
 from modules.app import mongo
-from wtforms import fields, validators, form
+from wtforms import fields, validators, form, FieldList, StringField, SelectMultipleField
 from flask_admin.contrib.pymongo import ModelView
 from flask_admin.model.template import BaseListRowAction
 from .fields import ReadonlyDateTimeField, ReadonlyStringField, ShibIDField
 from .util import defaultfmt, localize
-from modules.app import groups
 from flask import request
 from modules.logger import log
 from modules.app.diff import has_model_changed
 import datetime
+
 
 def _get_org_refs():
     return [
         (str(o.get('_id')), o.get('name')) for o in mongo.db.orgs.find()]
 
 
+def _get_groups():
+    return [
+        (o.get('group_id'), o.get('group_id')) for o in mongo.db.groups.find()]
+
+
 class SuspendRowAction(BaseListRowAction):
     def __init__(self, title=None):
         return super().__init__(title=title)
+
 
 class UserForm(form.Form):
     shib_id = ShibIDField('Shibboleth ID')
@@ -32,12 +38,13 @@ class UserForm(form.Form):
     role = fields.StringField('Role')
     job_title = fields.StringField('Job Title')
     organization_id = fields.SelectField('Organization')
-    groups = fields.FieldList(ReadonlyStringField(''))
+    groups = SelectMultipleField(choices=_get_groups())
     active = fields.BooleanField('Active', default=lambda: True)
     last_changed_by = ReadonlyStringField(
         'Last Changed By', [validators.Optional()])
     last_changed_on = ReadonlyDateTimeField(
         'Last Changed On', [validators.Optional()])
+
 
 class UserView(ModelView):
     column_list = ('shib_id', 'first_name',
@@ -49,8 +56,6 @@ class UserView(ModelView):
     column_searchable_list = ('last_name', 'first_name', 'email', 'shib_id')
     column_labels = dict(org_name='Organization')
 
-    # column_extra_row_actions = []
-    
     form = UserForm
 
     # Enables csv export of users
@@ -60,13 +65,10 @@ class UserView(ModelView):
         try:
             ls = super().get_list(page, sort_column, sort_desc, search, filters, execute=execute, page_size=page_size)
             users: Iterable[Dict] = ls[1]
-            to_search = [g.get('group_id') for g in mongo.db.groups.find({})]
-            gs = groups.get_for_many([u.get('shib_id') for u in users], to_search)
 
             orgs_dict = {x[0]: x[1] for x in _get_org_refs()}
 
             for user in users:
-                user['groups'] = gs.get(user.get('shib_id'))
                 org_id = user.get('organization_id')
                 if org_id:
                     user['org_name'] = orgs_dict.get(org_id, "Unknown ({})".format(org_id))
@@ -108,16 +110,16 @@ class UserView(ModelView):
     def create_form(self, obj=None):
         form = super().create_form(obj)
         form.organization_id.choices = _get_org_refs()
+        form.groups.choices = _get_groups()
         return form
 
     def edit_form(self, obj: dict = None):
         if obj.get('last_changed_on'):
             obj['last_changed_on'] = localize(obj.get('last_changed_on'))
-        to_search = to_search = [g.get('group_id') for g in mongo.db.groups.find({})]
-        obj['groups'] = groups.get_for_one(obj.get('shib_id'), to_search)
 
         form = super().edit_form(obj)
         form.organization_id.choices = _get_org_refs()
+        form.groups.choices = _get_groups()
 
         if obj.get('phone_numbers') and len(obj.get('phone_numbers')) >= form.phone_numbers.min_entries:
             form.phone_numbers.append_entry()
