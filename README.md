@@ -13,3 +13,6 @@ edit config.json
 ```
 
 `docker compose up -d`
+
+## Connecting
+Any apps that need to connect need a client token created in the "Clients" tab. 
