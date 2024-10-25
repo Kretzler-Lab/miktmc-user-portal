@@ -2,7 +2,8 @@ version: "3.7"
 services:
 
   portal-mongodb:
-    image: mongo:latest 
+    image: mongo:latest
+    restart: unless-stopped
     container_name: portal-mongodb
     volumes:
       - "kpmp-mongo-data:/data/db"
@@ -16,6 +17,7 @@ services:
 
   portal-app:
     image: ${ENV_PORTAL_APP_CONTAINER} 
+    restart: unless-stopped
     environment:
       - FLASK_RUNNING_IN_DOCKER=true
     container_name: portal-app
