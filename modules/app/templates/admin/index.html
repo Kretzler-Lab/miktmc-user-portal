@@ -23,8 +23,8 @@
 <p>Users logging in with Google or Microsoft accounts require an additional step because the User Portal requires the internal ID of the user's account.</p>
 <ol>
   <li>Have the user choose the Google or Microsoft logo on the login page and login with their account.</li>
-  <li>The user is able to log in successfully, they should see the Upload page, but it will have a message that they are not authorized. Have the user note the time/date. </li>
-  <li>Check for an email notification sent to the MiKTMC Uploader administrator list that contains the user's internal user ID, usually a long  (e.g. 12345678910@google.com for a Google account or 123asd-4dshs56-7err89@live.com for a Microsoft Acccount).></li>
+  <li>If the user is able to log in successfully, they should see the Upload page, but it will have a message that they are not authorized. Have the user note the time/date. </li>
+  <li>Check for an email notification sent to the MiKTMC Uploader administrator list at that time/date that contains the user's internal user ID, usually in the format "XXXXXXXXXXXXXX@google.com" for a Google account or "XXXXXX-XXXXXX-XXXXX@live.com" for a Microsoft Account.</li>
   <li>Follow the instructions above and use the ID from the email as the Shibboleth ID.</li>
 </ol>
 {% endblock %}
