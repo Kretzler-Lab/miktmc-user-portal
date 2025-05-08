@@ -1,6 +1,6 @@
-FROM centos/python-36-centos7
+FROM python:3.6-slim
 USER root
-RUN yum update -y
+RUN apt update -y
 
 COPY ./requirements.txt /app/requirements.txt
 
