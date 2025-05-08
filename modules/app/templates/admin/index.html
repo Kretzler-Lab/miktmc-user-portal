@@ -3,6 +3,8 @@
 {% block body %}
   <h2>Welcome to the MiKTMC User Portal</h2>
 <p>The MiKTMC User Portal provides authorization and access for users of MiKTMC applications. It is intended to be used alongside Shibboleth, which provides the authentication and login.</p>
+<h3>Getting Access to the User Portal</h3>
+<p>Contact <a href="mailto:miktmc-devs@umich.edu">miktmc-devs@umich.edu</a> to have someone granted access to the User Portal</p>
 <h3> Basic Usage</h3>
 <p> Follow these instructions for users whose institutions (usually academic) allow federated login via InCommon/Shibboleth. For other users, see instructions below. </p>
 <ol>
@@ -27,4 +29,6 @@
   <li>Check for an email notification sent to the MiKTMC Uploader administrator list at that time/date that contains the user's internal user ID, usually in the format "XXXXXXXXXXXXXX@google.com" for a Google account or "XXXXXX-XXXXXX-XXXXX@live.com" for a Microsoft Account.</li>
   <li>Follow the instructions above and use the ID from the email as the Shibboleth ID.</li>
 </ol>
+<h3>Administrator Access to the Uploader</h3>
+<p>MiKTMC Uploader admins can edit all uploads, lock uploads, and see a link to view the files in an upload. Follow the instructions above but choose "uploader_admin" as the Group. If the user already exists, find the user in the user list and edit their record to change the group. If they need to view the files, also contact <a href="mailto:miktmc-devs@umich.edu">miktmc-devs@umich.edu</a> to grant them the appropriate permissions.</p>
 {% endblock %}
