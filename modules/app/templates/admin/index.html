@@ -2,10 +2,9 @@
 
 {% block body %}
   <h2>Welcome to the MiKTMC User Portal</h2>
-<p>The MiKTMC User Portal provides authorization and access for users of MiKTMC applications. It is intended to be used alongside Shibboleth for authentication and retrieval of user credentials.</p>
-<h2> Basic Usage</h2>
+<p>The MiKTMC User Portal provides authorization and access for users of MiKTMC applications. It is intended to be used alongside Shibboleth, which provides the authentication and login.</p>
+<h3> Basic Usage</h3>
 <p> Follow these instructions for users whose institutions (usually academic) allow federated login via InCommon/Shibboleth. For other users, see instructions below. </p>
-<p>
 <ol>
   <li>Click "Organizations" and make sure the user's organization is in the list. If not, add it. NOTE: this does not add the organization to the initial login page. Contact a developer (miktmc-devs@umich.edu) to add to this list.</li>
   <li>Click Users -> Create</li>
@@ -14,13 +13,18 @@
   <li>Select "uploader_user" as the Group.</li>
   <li>Click "Save"</li>
 </ol>
-<h2>Users with University of Michigan Friend Accounts</h2>
+<h3>Users with University of Michigan Friend Accounts</h3>
 <ol>
-  <li>Have the user create a friend account here: https://friend.weblogin.umich.edu/friend/ and let you know what email address they registered with.</li>
-<li>Follow the instructions above, but Enter the Shibboleth ID in the following format [fullemailaddress]@umich.edu but WITHOUT the @ symbols. So jane.smith@university.edu would become jane.smithuniversity.edu@umich.edu</li>
-<li>When the user then logs in to the Uploader, they would choose “University of Michigan” and use their full email address as the username.</li>
+  <li>Have the user create a friend account here: <a href="https://friend.weblogin.umich.edu/friend/" target="_blank">https://friend.weblogin.umich.edu/friend/</a> and let you know what email address they registered with.</li>
+<li>Follow the instructions above, but enter the Shibboleth ID in the following format [fullemailaddress]@umich.edu but WITHOUT the @ symbols. So jane.smith@university.edu would become jane.smithuniversity.edu@umich.edu</li>
+<li>When the user then logs in to the Uploader, they should choose “University of Michigan” and use their full email address as the username.</li>
 </ol>
-<h2>Users with Google or Microsoft Accounts</h2>
-
-  </p>
+<h3>Users with Google or Microsoft Accounts</h3>
+<p>Users logging in with Google or Microsoft accounts require an additional step because the User Portal requires the internal ID of the user's account.</p>
+<ol>
+  <li>Have the user choose the Google or Microsoft logo on the login page and login with their account.</li>
+  <li>The user is able to log in successfully, they should see the Upload page, but it will have a message that they are not authorized. Have the user note the time/date. </li>
+  <li>Check for an email notification sent to the MiKTMC Uploader administrator list that contains the user's internal user ID, usually a long  (e.g. 12345678910@google.com for a Google account or 123asd-4dshs56-7err89@live.com for a Microsoft Acccount).></li>
+  <li>Follow the instructions above and use the ID from the email as the Shibboleth ID.</li>
+</ol>
 {% endblock %}
