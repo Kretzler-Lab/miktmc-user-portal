@@ -1,0 +1,34 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <h2>Welcome to the MiKTMC User Portal</h2>
+<p>The MiKTMC User Portal provides authorization and access for users of MiKTMC applications. It is intended to be used alongside Shibboleth, which provides the authentication and login.</p>
+<h3>Getting Access to the User Portal</h3>
+<p>Contact <a href="mailto:miktmc-devs@umich.edu">miktmc-devs@umich.edu</a> to have someone granted access to the User Portal.</p>
+<h3> Basic Usage</h3>
+<p> Follow these instructions for users whose institutions (usually academic) allow federated login via InCommon/Shibboleth. For other users, see instructions below. </p>
+<ol>
+  <li>Click "Organizations" and make sure the user's organization is in the list. If not, add it. NOTE: this does not add the organization to the initial login page. Contact <a href="mailto:miktmc-devs@umich.edu">miktmc-devs@umich.edu</a> to add an organization to login page dropdown list.</li>
+  <li>Click Users -> Create</li>
+  <li>Enter the user's email address as the Shibboleth ID.</li>
+  <li>Enter First Name and Last Name and choose the organization. Any additional user information is optional.</li>
+  <li>Select "uploader_user" as the Group.</li>
+  <li>Click "Save"</li>
+</ol>
+<h3>Users with University of Michigan Friend Accounts</h3>
+<ol>
+  <li>Have the user create a friend account here: <a href="https://friend.weblogin.umich.edu/friend/" target="_blank">https://friend.weblogin.umich.edu/friend/</a> and let you know what email address they registered with.</li>
+<li>Follow the instructions above, but enter the Shibboleth ID in the following format [fullemailaddress]@umich.edu but WITHOUT the @ symbols. So jane.smith@university.edu would become jane.smithuniversity.edu@umich.edu</li>
+<li>When the user then logs in to the Uploader, they should choose “University of Michigan” and use their full email address as the username.</li>
+</ol>
+<h3>Users with Google or Microsoft Accounts</h3>
+<p>Users logging in with Google or Microsoft accounts require an additional step because the User Portal requires the internal ID of the user's account.</p>
+<ol>
+  <li>Have the user choose the Google or Microsoft logo on the login page and log in with their account.</li>
+  <li>If the user is able to log in successfully, they should see the Upload page with a message that they are not authorized. Have the user note the time/date. </li>
+  <li>Check for an email notification sent to the MiKTMC Uploader administrator list at that time/date that contains the user's internal user ID, usually in the format "XXXXXXXXXXXXXX@google.com" for a Google account or "XXXXXX-XXXXXX-XXXXX@live.com" for a Microsoft Account.</li>
+  <li>Follow the instructions above and use the ID from the email as the Shibboleth ID.</li>
+</ol>
+<h3>Administrator Access to the Uploader</h3>
+<p>MiKTMC Uploader admins can edit all uploads, lock uploads, and see a link to view the files in an upload. Follow the instructions above but choose "uploader_admin" as the Group. If the user already exists, find the user in the user list and edit their record to change the group. If they need to view the files, also contact <a href="mailto:miktmc-devs@umich.edu">miktmc-devs@umich.edu</a> to grant them the appropriate permissions.</p>
+{% endblock %}
